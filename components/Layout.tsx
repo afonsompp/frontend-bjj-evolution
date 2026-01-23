@@ -24,8 +24,8 @@ export const Layout: React.FC = () => {
 
   const navItems = [
     { to: '/', label: 'Dashboard', icon: LayoutDashboard },
-    { to: '/trainings', label: 'My Trainings', icon: Dumbbell },
-    { to: '/profile', label: 'Profile', icon: User },
+    { to: '/trainings', label: 'Meus Treinos', icon: Dumbbell },
+    { to: '/profile', label: 'Perfil', icon: User },
   ];
 
   return (
@@ -34,7 +34,7 @@ export const Layout: React.FC = () => {
       <div className="lg:hidden fixed top-0 w-full bg-surface border-b border-zinc-800 z-50 px-4 py-3 flex justify-between items-center">
         <div className="flex items-center gap-2 font-bold text-xl text-primary">
           <Flame className="w-6 h-6" />
-          <span>BJJ Evo</span>
+          <span>Nosso BJJ</span>
         </div>
         <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <X /> : <Menu />}
@@ -48,7 +48,7 @@ export const Layout: React.FC = () => {
       )}>
         <div className="p-6 flex items-center gap-2 font-bold text-2xl text-primary border-b border-zinc-800 h-20">
            <Flame className="w-8 h-8" />
-           <span>BJJ Evolution</span>
+           <span>Nosso BJJ</span>
         </div>
 
         <nav className="flex-1 p-4 space-y-2">
@@ -76,7 +76,7 @@ export const Layout: React.FC = () => {
             className="flex items-center gap-3 px-4 py-3 w-full text-text-muted hover:text-danger hover:bg-danger/10 rounded-lg transition-all"
           >
             <LogOut size={20} />
-            Sign Out
+            Sair
           </button>
         </div>
       </aside>

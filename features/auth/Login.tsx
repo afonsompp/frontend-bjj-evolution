@@ -42,9 +42,9 @@ export const Login: React.FC = () => {
       <div className="w-full max-w-md space-y-8 bg-surface p-8 rounded-xl border border-zinc-800 shadow-xl">
         <div className="text-center">
           <Flame className="mx-auto h-12 w-12 text-primary" />
-          <h2 className="mt-6 text-3xl font-extrabold text-white">Sign in to BJJ Evo</h2>
+          <h2 className="mt-6 text-3xl font-extrabold text-white">Entre no Nosso BJJ</h2>
           <p className="mt-2 text-sm text-text-muted">
-            Track your journey on the mats
+            Acompanhe sua evolução nos tatames
           </p>
         </div>
 
@@ -52,7 +52,7 @@ export const Login: React.FC = () => {
           <div className="space-y-4 rounded-md shadow-sm">
             <div>
               <label htmlFor="email-address" className="block text-sm font-medium text-text-muted mb-1">
-                Email address
+                Email 
               </label>
               <input
                 id="email-address"
@@ -66,7 +66,7 @@ export const Login: React.FC = () => {
             </div>
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-text-muted mb-1">
-                Password
+                Senha
               </label>
               <input
                 id="password"
@@ -99,14 +99,14 @@ export const Login: React.FC = () => {
               isLoading={isSubmitting}
               className="w-full"
             >
-              Sign in
+              Entrar
             </Button>
           </div>
         </form>
         <div className="text-center text-sm">
-          <span className="text-text-muted">Don't have an account? </span>
+          <span className="text-text-muted">Não tem uma conta? </span>
           <Link to="/register" className="font-medium text-primary hover:text-primary-hover">
-            Register here
+            Registre-se
           </Link>
         </div>
       </div>
