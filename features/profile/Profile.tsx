@@ -60,13 +60,7 @@ export const Profile: React.FC = () => {
 
   const mutation = useMutation({
     mutationFn: (data: CreateUpdateProfileDTO) => {
-      // Nota: Mantive sua lógica original (POST se existe, PUT se não),
-      // mas geralmente APIs usam POST para criar e PUT/PATCH para atualizar.
-      // Verifique se o backend espera isso mesmo.
-      if (profile) {
         return api.post('/profiles', data);
-      }
-      return api.put('/profiles', data);
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['profile'] });
