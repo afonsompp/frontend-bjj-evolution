@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Search, Check, Filter } from 'lucide-react';
 import { clsx } from 'clsx';
-import { Technique, TechniqueType } from '../../types';
+import { Technique, TechniqueType } from '@/features/training/types';
 
 interface TechniqueSelectorProps {
   techniques: Technique[];

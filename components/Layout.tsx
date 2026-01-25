@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Outlet, NavLink, useNavigate } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { 
   LayoutDashboard, 
@@ -46,10 +46,12 @@ export const Layout: React.FC = () => {
         "fixed lg:static top-0 left-0 z-40 h-screen w-64 bg-surface border-r border-zinc-800 transform transition-transform duration-200 ease-in-out lg:transform-none flex flex-col",
         isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
       )}>
-        <div className="p-6 flex items-center gap-2 font-bold text-2xl text-primary border-b border-zinc-800 h-20">
+        <Link to='/'>
+          <div className="p-6 flex items-center gap-2 font-bold text-2xl text-primary border-b border-zinc-800 h-20">
            <Flame className="w-8 h-8" />
            <span>Nosso BJJ</span>
         </div>
+        </Link>
 
         <nav className="flex-1 p-4 space-y-2">
           {navItems.map((item) => (
