@@ -40,7 +40,7 @@ export const TrainingForm: React.FC<TrainingFormProps> = ({
     defaultValues: {
       classType: 'REGULAR',
       trainingType: 'GI',
-      durationMinutes: 90,
+      durationMinutes: 60,
       totalRolls: 5,
       totalRounds: 5,
       roundLengthMinutes: 5,
