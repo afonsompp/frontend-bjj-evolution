@@ -1,4 +1,3 @@
-// src/features/trainings/components/TrainingForm.tsx
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -63,7 +62,7 @@ export const TrainingForm: React.FC<TrainingFormProps> = ({
        reset({
          ...initialData,
          sessionDate: new Date(initialData.sessionDate).toISOString().slice(0, 16),
-         techniqueIds: extractIds(initialData.technique),
+         techniqueIds: extractIds(initialData.techniques),
          submissionTechniqueIds: extractIds(initialData.submissionTechniques),
          submissionTechniqueAllowedIds: extractIds(initialData.submissionTechniquesAllowed),
        });
@@ -157,7 +156,7 @@ export const TrainingForm: React.FC<TrainingFormProps> = ({
       <section className="border-t border-zinc-800 pt-6 space-y-3">
         <div className="flex items-center gap-2">
           <Trophy className="w-5 h-5 text-emerald-500" />
-          <h3 className="text-lg font-semibold text-white">Minhas Finalizações (Ataque)</h3>
+          <h3 className="text-lg font-semibold text-white">Posições Aplicadas</h3>
         </div>
         <div className="bg-emerald-950/10 p-4 rounded-lg border border-emerald-900/30">
             <TechniqueSelector 
@@ -173,7 +172,7 @@ export const TrainingForm: React.FC<TrainingFormProps> = ({
       <section className="border-t border-zinc-800 pt-6 space-y-3">
         <div className="flex items-center gap-2">
           <AlertCircle className="w-5 h-5 text-rose-400" />
-          <h3 className="text-lg font-semibold text-white">Finalizações Sofridas (Defesa)</h3>
+          <h3 className="text-lg font-semibold text-white">Posições Sofridas (Defesa)</h3>
         </div>
         <div className="bg-rose-950/10 p-4 rounded-lg border border-rose-900/30">
             <TechniqueSelector 

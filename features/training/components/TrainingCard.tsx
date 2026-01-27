@@ -165,10 +165,10 @@ export const TrainingCard: React.FC<TrainingCardProps> = ({ training, isExpanded
                     Posição / Técnica do Dia
                  </div>
                  <div className="min-h-[30px]">
-                    {training.technique && training.technique.length > 0 ? (
+                    {training.techniques && training.techniques.length > 0 ? (
                        <div className="flex flex-wrap gap-2">
-                          {training.technique.map(t => (
-                             <span key={t.id} className="text-zinc-300 text-sm font-medium">{t.name}</span>
+                          {training.techniques.map(t => (
+                             <span key={t.id} className="text-zinc-300 text-sm text-xs px-2.5 py-1 bg-zinc-850 rounded border font-medium truncate max-w-full ">{t.name}</span>
                           ))}
                        </div>
                     ) : <span className="text-zinc-600 text-sm italic">Nenhuma registrada</span>}
