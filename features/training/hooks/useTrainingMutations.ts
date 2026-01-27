@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { createTraining, updateTraining, deleteTraining } from '../api/trainingService';
-import { TrainingFormData } from '../schemas/training.schema';
+import { TrainingFormData } from '../domain/training.schema';
 
 export const useTrainingFormMutation = (id?: string) => {
   const queryClient = useQueryClient();

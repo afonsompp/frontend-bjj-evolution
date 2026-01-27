@@ -14,7 +14,7 @@ import { Select } from '@/components/ui/Select';
 import { TechniqueSelector } from './TechniqueSelector'; 
 
 // Logic & Types
-import { trainingSchema, TrainingFormData } from '../schemas/training.schema';
+import { trainingSchema, TrainingFormData } from '../domain/training.schema';
 import { Technique, TrainingResponse } from './../types'; // Ajuste o caminho se necessário
 
 interface TrainingFormProps {
@@ -70,7 +70,6 @@ export const TrainingForm: React.FC<TrainingFormProps> = ({
     }
   }, [initialData, reset]);
 
-  // Função genérica para alternar IDs nos arrays
   const handleTechToggle = (field: TechField, id: number) => {
     const current = watch(field) || [];
     const updated = current.includes(id) 
@@ -157,7 +156,7 @@ export const TrainingForm: React.FC<TrainingFormProps> = ({
       {/* 4. MEUS ATAQUES (Verde) */}
       <section className="border-t border-zinc-800 pt-6 space-y-3">
         <div className="flex items-center gap-2">
-          <Trophy className="w-5 h-5 text-emerald-400" />
+          <Trophy className="w-5 h-5 text-emerald-500" />
           <h3 className="text-lg font-semibold text-white">Minhas Finalizações (Ataque)</h3>
         </div>
         <div className="bg-emerald-950/10 p-4 rounded-lg border border-emerald-900/30">
@@ -165,7 +164,7 @@ export const TrainingForm: React.FC<TrainingFormProps> = ({
                 techniques={techniques}
                 selectedIds={watch('submissionTechniqueIds')}
                 onToggle={(id) => handleTechToggle('submissionTechniqueIds', id)}
-                className="theme-emerald" // Opcional: se quiser estilizar o selector internamente
+                className="theme-emerald"
             />
         </div>
       </section>

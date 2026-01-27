@@ -1,6 +1,28 @@
 import { api } from '@/lib/api';
-import { TrainingFormData } from '../schemas/training.schema';
+import { TrainingFormData } from '../domain/training.schema';
 import { Technique, TrainingResponse } from '../types';
+import { Page } from '../domain/page.type';
+
+export const getTechniques = async (query = '', page = 0, size = 20) => {
+  const params: any = { page, size, sort: 'name,asc' };
+  
+  if (query) {
+    params.query = query;
+  }
+
+  const { data } = await api.get<Page<Technique>>('/techniques', { params });
+  return data;
+};
+
+export const createTechnique = async (data: {
+  name: string;
+  alternativeName?: string;
+  type: string;
+  target: string;
+}) => {
+  const { data: newTechnique } = await api.post('/techniques', data);
+  return newTechnique;
+};
 
 export const getTrainings = async (page = 0, size = 10) => {
   const { data } = await api.get('/trainings', {
@@ -11,11 +33,6 @@ export const getTrainings = async (page = 0, size = 10) => {
 
 export const getTrainingById = async (id: string) => {
   const { data } = await api.get<TrainingResponse>(`/trainings/${id}`);
-  return data;
-};
-
-export const getTechniques = async () => {
-  const { data } = await api.get<Technique[]>('/techniques');
   return data;
 };
 
