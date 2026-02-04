@@ -1,6 +1,6 @@
 import { api } from '@/lib/api';
 import { TrainingFormData } from '../domain/training.schema';
-import { Technique, TrainingResponse } from '../types';
+import { Technique, TrainingResponse } from '../../../lib/types';
 import { Page } from '../domain/page.type';
 
 export const getTechniques = async (query = '', page = 0, size = 20) => {

@@ -14,7 +14,7 @@ import { TechniqueSelector } from './TechniqueSelector';
 
 // Logic & Types
 import { trainingSchema, TrainingFormData } from '../domain/training.schema';
-import { Technique, TrainingResponse } from './../types'; // Ajuste o caminho se necessário
+import { Technique, TrainingResponse } from '../../../lib/types'; // Ajuste o caminho se necessário
 
 interface TrainingFormProps {
   initialData?: TrainingResponse;

@@ -15,6 +15,10 @@ export type TechniqueTarget =
 export type ClassType = 'GI' | 'NO_GI';
 export type TrainingType = 'REGULAR' | 'OPEN_MAT' | 'COMPETITION' | 'SEMINAR' | 'DRILL';
 
+export type UserRole = 'ACADEMY_OWNER' | 'CUSTOMER' | 'ADMIN';
+export type AcademyRole = 'OWNER' | 'MANAGER' | 'INSTRUCTOR' | 'STUDENT';
+export type MemberStatus = 'ACTIVE' | 'PENDING' | 'INACTIVE';
+
 /* =========================================
    Entities
 ========================================= */

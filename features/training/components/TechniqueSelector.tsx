@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Search, Check, Filter, Loader2, Plus, X, ChevronRight, List, Keyboard } from 'lucide-react'; // Importei Keyboard
 import { clsx } from 'clsx';
-import { Technique, TechniqueType } from '../types';
+import { Technique, TechniqueType } from '../../../lib/types';
 import { TechniqueCreateModal } from './TechniqueCreateModal';
 import { getTechniques } from '../api/trainingService';
 

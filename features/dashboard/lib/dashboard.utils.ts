@@ -1,4 +1,4 @@
-import { TrainingResponse, Technique } from '../../training/types';
+import { TrainingResponse, Technique } from '../../../lib/types';
 export const PERIOD_OPTIONS = [7, 14, 30, 45, 60, 90, 180, 365];
 const DAY_MS = 24 * 60 * 60 * 1000;
 
