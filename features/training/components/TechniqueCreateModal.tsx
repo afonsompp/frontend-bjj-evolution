@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X, Save, Loader2 } from 'lucide-react';
-import { Technique, TechniqueType, TechniqueTarget } from '../types'; // Ajuste o import
+import { Technique, TechniqueType, TechniqueTarget } from '../../../lib/types'; // Ajuste o import
 import { createTechnique } from '../api/trainingService';
 
 interface TechniqueCreateModalProps {

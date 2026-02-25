@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Outlet, NavLink, useNavigate, Link } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { 
   LayoutDashboard, 
@@ -8,25 +8,58 @@ import {
   LogOut, 
   Menu, 
   X,
-  Flame
+  Flame,
+  Users,
+  Calendar
 } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { AcademySwitcher } from './AcademySwitcher';
+import { useAcademyPermissions } from '../features/academy/hooks/useAcademyPermissions';
 
 export const Layout: React.FC = () => {
   const { signOut } = useAuth();
   const navigate = useNavigate();
+  const { academyId } = useParams(); // Identifica se estamos num contexto de academia
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Hook de permissões (só funciona se houver um academyId)
+  const { isStaff } = useAcademyPermissions(academyId);
 
   const handleSignOut = async () => {
     await signOut();
     navigate('/login');
   };
 
-  const navItems = [
+  // 1. Menu Pessoal (Padrão)
+  const personalNav = [
     { to: '/', label: 'Dashboard', icon: LayoutDashboard },
     { to: '/trainings', label: 'Meus Treinos', icon: Dumbbell },
     { to: '/profile', label: 'Perfil', icon: User },
   ];
+
+  // 2. Menu da Academia (Dinâmico)
+  const academyNav = [
+    { 
+      to: `/academies/${academyId}`, 
+      label: 'Visão Geral', 
+      icon: LayoutDashboard 
+    },
+    // Adicionei Grade aqui pois geralmente é público para alunos também
+    { 
+      to: `/academies/${academyId}/schedule`, 
+      label: 'Grade', 
+      icon: Calendar 
+    },
+    // Só mostra Membros se for Staff (Instrutor/Dono/Manager)
+    ...(isStaff ? [{ 
+      to: `/academies/${academyId}/members`, 
+      label: 'Membros', 
+      icon: Users 
+    }] : []),
+  ];
+
+  // Seleciona qual menu mostrar baseado na URL
+  const navItems = academyId ? academyNav : personalNav;
 
   return (
     <div className="min-h-screen bg-background text-text flex">
@@ -46,18 +79,18 @@ export const Layout: React.FC = () => {
         "fixed lg:static top-0 left-0 z-40 h-screen w-64 bg-surface border-r border-zinc-800 transform transition-transform duration-200 ease-in-out lg:transform-none flex flex-col",
         isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
       )}>
-        <Link to='/'>
-          <div className="p-6 flex items-center gap-2 font-bold text-2xl text-primary border-b border-zinc-800 h-20">
-           <Flame className="w-8 h-8" />
-           <span>Nosso BJJ</span>
+        
+        {/* HEADER DA SIDEBAR: Agora usa o Switcher */}
+        <div className="p-4 border-b border-zinc-800">
+           <AcademySwitcher />
         </div>
-        </Link>
 
         <nav className="flex-1 p-4 space-y-2">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
+              end={item.to === '/' || item.to === `/academies/${academyId}`} // Evita active state falso na home
               onClick={() => setIsMobileMenuOpen(false)}
               className={({ isActive }) => cn(
                 "flex items-center gap-3 px-4 py-3 rounded-lg transition-colors",

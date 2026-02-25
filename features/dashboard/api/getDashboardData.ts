@@ -1,5 +1,5 @@
 import { api } from '@/lib/api';
-import { TrainingResponse } from '../../training/types';
+import { TrainingResponse } from '../../../lib/types';
 
 const toLocalDateTimeParam = (date: Date) => date.toISOString().slice(0, 19);
 

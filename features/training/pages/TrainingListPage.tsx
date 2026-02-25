@@ -10,7 +10,7 @@ import { useTrainingsList } from '../hooks/useTrainingQueries';
 import { useDeleteTraining } from '../hooks/useTrainingMutations';
 import { EmptyState } from '../components/EmptyState';
 import { TrainingCard } from '../components/TrainingCard';
-import { TrainingResponse } from '../types';
+import { TrainingResponse } from '../../../lib/types';
 
 export const TrainingListPage: React.FC = () => {
   const [page, setPage] = useState(0);

@@ -15,6 +15,10 @@ export type TechniqueTarget =
 export type ClassType = 'GI' | 'NO_GI';
 export type TrainingType = 'REGULAR' | 'OPEN_MAT' | 'COMPETITION' | 'SEMINAR' | 'DRILL';
 
+export type UserRole = 'ACADEMY_OWNER' | 'CUSTOMER' | 'ADMIN';
+export type AcademyRole = 'OWNER' | 'MANAGER' | 'INSTRUCTOR' | 'STUDENT';
+export type MemberStatus = 'ACTIVE' | 'PENDING' | 'INACTIVE';
+
 /* =========================================
    Entities
 ========================================= */
@@ -28,10 +32,14 @@ export interface Technique {
 }
 
 export interface UserProfile {
-  id: number;
+  id: string;
   name: string;
+  secondName: string;
+  nickname: string
   belt: string;
-  // outros campos do perfil...
+  stripe: number;
+  role: string
+
 }
 
 /* =========================================
@@ -90,7 +98,6 @@ export interface TrainingResponse {
 
   // Métricas
   totalRolls: number;
-  totalRounds: number;
   roundLengthMinutes: number;
   restLengthMinutes: number;
   cardioRating: number;
@@ -103,4 +110,7 @@ export interface TrainingResponse {
   sweeps: number;
   takedowns: number;
   guardPasses: number;
+
+  description: string;
+
 }
