@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { ChevronsUpDown, Check, Plus, User, Building2, Loader2 } from 'lucide-react';
+import { ChevronsUpDown, Check, Plus, User, Building2, Loader2, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { getMyAcademies } from '@/features/academy/api/academyService';
 import { useAuth } from '@/context/AuthContext';
@@ -86,6 +86,18 @@ export const AcademySwitcher: React.FC = () => {
                    </button>
                  ))
                )}
+
+               <NavLink 
+                  onClick={() => setIsOpen(!isOpen)}
+                  to="/academies/search" 
+                  className={({ isActive }) => cn(
+                    "flex items-center gap-2 px-2 py-2 rounded-md text-sm font-medium transition-colors",
+                    isActive ? "bg-primary/10 text-primary" : "text-zinc-400 hover:text-white hover:bg-zinc-800"
+                  )}
+                >
+                  <Search size={14} />
+                  Explorar Academias
+                </NavLink>
                
                {canCreate && (
                  <button

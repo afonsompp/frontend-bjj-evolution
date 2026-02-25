@@ -1,4 +1,5 @@
 import { UserProfile, AcademyRole, MemberStatus, ClassType, TrainingType } from '@/lib/types';
+import { BeltType } from '@/types';
 
 export interface Academy {
   id: string;
@@ -6,13 +7,28 @@ export interface Academy {
   address: string;
 }
 
+export interface AddMemberDTO {
+  userId: string;
+  role: AcademyRole;
+  belt?: BeltType;
+  stripe?: number;
+  status?: MemberStatus;
+}
+
+
 export interface AcademyMember {
   academyId: string;
   user: UserProfile;
   role: AcademyRole;
   status: MemberStatus;
+  belt: BeltType;
+  stripe: number;
 }
 
+export interface GraduationRequest {
+  newBelt: BeltType;
+  newStripe: number;
+}
 export interface ScheduledClass {
   id: number;
   academyId: string;

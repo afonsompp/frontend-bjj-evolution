@@ -6,30 +6,32 @@ import { AcademyMember } from '../types';
 export const useAcademyPermissions = (academyId?: string) => {
   const { user } = useAuth();
   
-  // Busca o status do membro atual nesta academia específica
   const { data: member } = useQuery({
     queryKey: ['academyMember', academyId, user?.id],
     queryFn: async () => {
       if (!academyId || !user) return null;
-      // Endpoint sugerido: GET /academies/{id}/members/{userId}
       const { data } = await api.get<AcademyMember>(`/academies/${academyId}/members/${user.id}`);
       return data;
     },
     enabled: !!academyId && !!user,
-    retry: false
+    retry: false,
+    staleTime: 1000 * 60 * 5 // Cache de 5 min
   });
 
   const role = member?.role;
-  const isOwner = role === 'OWNER';
-  const isManager = role === 'MANAGER';
-  const isInstructor = role === 'INSTRUCTOR';
-
+  
   return {
+    // Dados do Membro (Novo)
+    member, 
+    belt: member?.belt,
+    stripe: member?.stripe,
+
+    // Permissões (Existentes)
     role,
-    isStaff: isOwner || isManager || isInstructor,
-    canManageClasses: isOwner || isManager || isInstructor,
-    canManageMembers: isOwner || isManager,
-    canDeleteAcademy: isOwner,
+    isOwner: role === 'OWNER',
+    isManager: role === 'MANAGER',
+    isStaff: ['OWNER', 'MANAGER', 'INSTRUCTOR'].includes(role || ''),
+    isStudent: role === 'STUDENT',
     memberStatus: member?.status
   };
 };

@@ -12,6 +12,8 @@ import { TrainingListPage } from './features/training/pages/TrainingListPage';
 import { TrainingFormPage } from './features/training/pages/TrainingFormPage';
 import { AcademyDashboard } from './features/academy/pages/AcademyDashboard';
 import { AcademyCreate } from './features/academy/pages/AcademyCreate';
+import { AcademyMembers } from './features/academy/pages/AcademyMembers';
+import { AcademySearch } from './features/academy/pages/AcademySearch';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -39,6 +41,8 @@ const App: React.FC = () => {
               <Route path="/trainings/:id" element={<TrainingFormPage />} />
               <Route path="/academies/new" element={<AcademyCreate />} />
               <Route path="/academies/:academyId" element={<AcademyDashboard />} />
+              <Route path="/academies/:academyId/members" element={<AcademyMembers />} /> 
+              <Route path="/academies/search" element={<AcademySearch />} />
             </Route>
 
             <Route path="*" element={<Navigate to="/" replace />} />

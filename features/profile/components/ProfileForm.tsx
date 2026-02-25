@@ -44,6 +44,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
       reset({
         name: initialData.name,
         secondName: initialData.secondName,
+        nickname: initialData.nickname,
         belt: initialData.belt,
         stripe: Number(initialData.stripe),
         startsIn: formattedDate,
@@ -54,6 +55,14 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       
+      <div className='grid grid-cols-3 md:grid-cols-1 gap-6'>
+        <Input 
+          label="Usuário" 
+          placeholder="Seu usuário"
+          {...register('nickname')} 
+          error={errors.nickname?.message} 
+        />
+      </div>
       {/* LINHA 1: Nome e Sobrenome */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Input 

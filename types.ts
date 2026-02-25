@@ -6,6 +6,8 @@ export interface UserProfile {
   id: string;
   name: string;
   secondName: string;
+  nickname: string;
+  role: string;
   belt: BeltType;
   stripe: number;
   startsIn: string;
@@ -14,6 +16,7 @@ export interface UserProfile {
 export interface CreateUpdateProfileDTO {
   name: string;
   secondName: string;
+  nickname: string;
   belt: BeltType;
   stripe: number;
   startsIn: string;
