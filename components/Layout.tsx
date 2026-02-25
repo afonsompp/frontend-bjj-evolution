@@ -20,39 +20,33 @@ export const Layout: React.FC = () => {
     navigate('/login');
   };
 
-  const personalNav = [
+  const navItems = academyId ? [
+    { to: `/academies/${academyId}`, label: 'Visão Geral', icon: LayoutDashboard },
+    { to: `/academies/${academyId}/schedule`, label: 'Grade', icon: Calendar },
+    ...(isStaff ? [{ to: `/academies/${academyId}/members`, label: 'Membros', icon: Users }] : []),
+  ] : [
     { to: '/', label: 'Dashboard', icon: LayoutDashboard },
     { to: '/trainings', label: 'Meus Treinos', icon: Dumbbell },
     { to: '/profile', label: 'Perfil', icon: User },
   ];
 
-  const academyNav = [
-    { to: `/academies/${academyId}`, label: 'Visão Geral', icon: LayoutDashboard },
-    { to: `/academies/${academyId}/schedule`, label: 'Grade', icon: Calendar },
-    ...(isStaff ? [{ to: `/academies/${academyId}/members`, label: 'Membros', icon: Users }] : []),
-  ];
-
-  const navItems = academyId ? academyNav : personalNav;
-
   return (
     <div className="min-h-screen bg-[#09090b] text-zinc-100 flex overflow-hidden">
-      {/* Mobile Header - Altura fixa h-16 (64px) */}
-      <div className="lg:hidden fixed top-0 w-full h-16 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800 z-[45] px-4 flex justify-between items-center">
+      
+      {/* Mobile Header - REDUZIDO para z-[30] */}
+      <div className="lg:hidden fixed top-0 w-full h-16 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800 z-[30] px-4 flex justify-between items-center">
         <div className="flex items-center gap-2 font-bold text-xl text-primary">
           <Flame className="fill-primary w-6 h-6" />
           <span>Nosso BJJ</span>
         </div>
-        <button 
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
-          className="p-2 text-zinc-400 hover:text-zinc-100 transition-colors"
-        >
+        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 text-zinc-400">
           {isMobileMenuOpen ? <X /> : <Menu />}
         </button>
       </div>
 
-      {/* Sidebar Navigation */}
+      {/* Sidebar - AUMENTADO para z-[100] no mobile para sobrepor o header */}
       <aside className={cn(
-        "fixed lg:static top-0 left-0 z-50 h-screen w-64 bg-zinc-950 border-r border-zinc-800 flex flex-col transition-transform duration-300 lg:translate-x-0",
+        "fixed lg:static top-0 left-0 z-[100] h-screen w-64 bg-zinc-950 border-r border-zinc-800 flex flex-col transition-transform duration-300 lg:translate-x-0",
         isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         <div className="p-4 border-b border-zinc-800 shrink-0">
@@ -84,32 +78,22 @@ export const Layout: React.FC = () => {
         </nav>
 
         <div className="p-4 border-t border-zinc-800 shrink-0">
-          <button
-            onClick={handleSignOut}
-            className="flex items-center gap-3 px-3 py-2.5 w-full text-zinc-500 hover:text-red-400 hover:bg-red-500/5 rounded-lg transition-all font-medium"
-          >
-            <LogOut size={18} />
-            Sair da Conta
+          <button onClick={handleSignOut} className="flex items-center gap-3 px-3 py-2.5 w-full text-zinc-500 hover:text-red-400 hover:bg-red-500/5 rounded-lg transition-all font-medium">
+            <LogOut size={18} /> Sair da Conta
           </button>
         </div>
       </aside>
 
-      {/* Main Content Area */}
-      <main className="flex-1 min-w-0 h-screen overflow-y-auto relative bg-[#09090b] custom-scrollbar">
-        <div className={cn(
-          "p-6 lg:p-10 max-w-7xl mx-auto",
-          "pt-24 lg:pt-10" // pt-24 (64px do header + 32px de respiro) compensa o header fixo no mobile
-        )}>
+      {/* Main Area - pt-16 corrige o corte no mobile */}
+      <main className="flex-1 min-w-0 h-screen overflow-y-auto relative bg-[#09090b] pt-16 lg:pt-0">
+        <div className="p-6 lg:p-10 max-w-7xl mx-auto">
           <Outlet />
         </div>
       </main>
 
-      {/* Overlay mobile */}
+      {/* Overlay mobile - Entre o Header e a Sidebar */}
       {isMobileMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden animate-in fade-in duration-300"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[90] lg:hidden" onClick={() => setIsMobileMenuOpen(false)} />
       )}
     </div>
   );
